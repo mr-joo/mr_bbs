@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: USER
@@ -11,23 +12,29 @@
 <head>
     <title>WRITE</title>
     <link href="<c:url value="/resources/css/bootstrap.css"/>" rel="stylesheet">
-    <link href="<c:url value="/resources/css/write.css"/>" rel="stylesheet">
 </head>
 <body>
-<h3 style="color: #5e5e5e">글쓰기</h3>
-<form>
-    <div class="form-group">
-        <label for="exampleFormControlInput1">Title</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" style="width: 800px">
-    </div>
+<div class="container">
+    <h3 style="color: #5e5e5e">글쓰기</h3>
+    <form:form modelAttribute="post">
+        <div class="form-group">
+            <label for="exampleFormControlInput1">제목</label>
+            <form:input path="title" type="text" class="form-control" id="exampleFormControlInput1"
+                        style="width: 1000px"></form:input>
+        </div>
 
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Textarea</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="width: 800px"></textarea>
-    </div>
-</form>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">내용</label>
+            <form:textarea path="main_text" class="form-control" id="exampleFormControlTextarea1" rows="3"
+                           style="width: 1000px"></form:textarea>
+        </div>
 
-<button type="button" class="btn pull-right">목록</button>
-<input type="submit" class="btn pull-right" value="저장">
+        <input type="submit" class="btn pull-right" value="저장">
+    </form:form>
+
+    <form action="bbs" method="get">
+        <input type="submit" class="btn pull-right" value="목록"></input>
+    </form>
+</div>
 </body>
 </html>

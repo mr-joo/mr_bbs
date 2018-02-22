@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joo.mapper.BbsMapper">
+    <insert id="write" parameterType="com.joo.model.Post">
+        INSERT INTO post(title, main_text)
+        VALUES (#{title}, #{main_text})
+    </insert>
+</mapper>
