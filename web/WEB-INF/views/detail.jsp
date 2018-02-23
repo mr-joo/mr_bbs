@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: USER
-  Date: 2018-02-20
-  Time: 오후 5:40
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -21,18 +14,21 @@
             <th>
                 <div class="tb-title" style="text-align: center">Title</div>
             </th>
+            <th>
+                ${post.title}
+            </th>
         </tr>
         </thead>
         <tbody>
         <tr>
             <td>
-                <div style="text-align: right">Date :</div>
-                <div style="text-align: right">Name :</div>
+                <div style="text-align: right">Date : ${post.createDate}</div>
+                <div style="text-align: right">Name : ${post.name}</div>
             </td>
         </tr>
         <tr>
             <td>
-                <div>본문 들어갈 자리</div>
+                <div>${post.mainText}</div>
             </td>
         </tr>
         </tbody>

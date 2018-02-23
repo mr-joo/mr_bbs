@@ -2,8 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.joo.repository.BbsMapper">
+    <select id="selectList" resultType="com.joo.model.Post">
+        SELECT post_num AS postNum
+              , title AS title
+              , create_date AS createDate
+              , name AS name
+          FROM post
+    </select>
+
     <insert id="insert" parameterType="com.joo.model.Post">
-        INSERT INTO post(title, main_text)
-        VALUES (#{title}, #{mainText})
+        INSERT INTO post(title, main_text, name, create_date)
+        VALUES (#{title}, #{mainText}, #{name}, sysdate())
     </insert>
+
+    <select id="selectPost" resultType="com.joo.model.Post">
+        SELECT title AS title
+              , main_text AS mainText
+              , name AS name
+              , create_date AS createDate
+          FROM post
+          WHERE post_num = #{postNum}
+    </select>
 </mapper>

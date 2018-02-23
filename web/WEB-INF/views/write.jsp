@@ -29,6 +29,12 @@
                            style="width: 1000px"></textarea>
         </div>
 
+        <div class="form-group">
+            <label for="name">작성자</label>
+            <input name="name" class="form-control" id="name"
+                      style="width: 300px"></input>
+        </div>
+
         <input type="submit" class="btn pull-right" value="저장">
     </form>
 

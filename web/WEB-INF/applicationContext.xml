@@ -20,10 +20,7 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>
-        <property name="mapperLocations">
-            <list>
-                <value>classpath:BbsMapper.xml</value>
-            </list>
+        <property name="mapperLocations" value="classpath:*.xml">
         </property>
     </bean>
 

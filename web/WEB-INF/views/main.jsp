@@ -1,34 +1,45 @@
-<%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: USER
-  Date: 2018-02-19
-  Time: 오후 5:21
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="sc" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>BBS</title>
-    <link href="<c:url value="/resources/css/bootstrap.css"/>" rel="stylesheet">
+    <link href="<sc:url value="/resources/css/bootstrap.css"/>" rel="stylesheet">
 </head>
 <body>
 <div class="container">
     <h3 style="color: #5e5e5e">게시판</h3>
     <table class="table">
-        <thead>
+        <colgroup>
+            <col style="text-align: center; width: 20px">
+            <col style="text-align: center; width: 300px">
+            <col style="text-align: center; width: 200px">
+            <col style="text-align: center; width: 300px">
+        </colgroup>
+        <thead style="text-align: center">
         <tr>
-            <th scope="col" style="text-align: center; width: 20px">No.</th>
-            <th scope="col" style="text-align: center; width: 400px">Content</th>
-            <th scope="col" style="text-align: center; width: 20px">Name</th>
-            <th scope="col" style="text-align: center; width: 30px">Date</th>
+            <th scope="col">No.</th>
+            <th scope="col">Title</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date</th>
         </tr>
         </thead>
+        <tbody>
+        <c:forEach var="post" items="${postList}">
+            <tr>
+                <td>${post.postNum}</td>
+                <td><a href="/detail/${post.postNum}">${post.title}</a></td>
+                <td>${post.name}</td>
+                <td>${post.createDate}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
     </table>
 
-    <form action="/write" method="get">
-        <input type="submit" class="btn pull-right" value="글쓰기">
-    </form>
+    <a href="/write">
+        <input type="button" class="btn pull-right" value="글쓰기">
+    </a>
 </div>
 </body>
 </html>
