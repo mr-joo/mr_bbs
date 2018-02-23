@@ -1,18 +1,18 @@
 package com.joo.service;
 
 import com.joo.model.Post;
-import com.joo.repository.PostDao;
+import com.joo.repository.BbsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class PostServiceImpl implements PostService {
     @Autowired
-    private PostDao postDao;
+    private BbsMapper bbsMapper;
 
     @Override
     public void write(Post post) {
-        postDao.insertPost(post);
+        //TODO: 욕설 치환 기능 추가
+        bbsMapper.insert(post);
     }
 }

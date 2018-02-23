@@ -2,7 +2,7 @@ package com.joo.model;
 
 public class Post {
     private String title;
-    private String main_text;
+    private String mainText;
 
     public String getTitle() {
         return title;
@@ -12,11 +12,11 @@ public class Post {
         this.title = title;
     }
 
-    public String getMain_text() {
-        return main_text;
+    public String getMainText() {
+        return mainText;
     }
 
-    public void setMain_text(String main_text) {
-        this.main_text = main_text;
+    public void setMainText(String mainText) {
+        this.mainText = mainText;
     }
 }

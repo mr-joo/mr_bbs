@@ -16,21 +16,21 @@
 <body>
 <div class="container">
     <h3 style="color: #5e5e5e">글쓰기</h3>
-    <form:form modelAttribute="post">
+    <form action="/write" method="post">
         <div class="form-group">
-            <label for="exampleFormControlInput1">제목</label>
-            <form:input path="title" type="text" class="form-control" id="exampleFormControlInput1"
-                        style="width: 1000px"></form:input>
+            <label for="title">제목</label>
+            <input name="title" type="text" class="form-control" id="title"
+                        style="width: 1000px"></input>
         </div>
 
         <div class="form-group">
-            <label for="exampleFormControlTextarea1">내용</label>
-            <form:textarea path="main_text" class="form-control" id="exampleFormControlTextarea1" rows="3"
-                           style="width: 1000px"></form:textarea>
+            <label for="mainText">내용</label>
+            <textarea name="mainText" class="form-control" id="mainText" rows="3"
+                           style="width: 1000px"></textarea>
         </div>
 
         <input type="submit" class="btn pull-right" value="저장">
-    </form:form>
+    </form>
 
     <form action="bbs" method="get">
         <input type="submit" class="btn pull-right" value="목록"></input>

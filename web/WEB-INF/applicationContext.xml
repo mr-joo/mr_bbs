@@ -32,6 +32,6 @@
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.joo.mapper"></property>
+        <property name="basePackage" value="com.joo.repository"></property>
     </bean>
 </beans>
