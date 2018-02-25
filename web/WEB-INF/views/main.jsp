@@ -26,9 +26,9 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="post" items="${postList}">
+        <c:forEach var="post" items="${postList}" varStatus="status">
             <tr>
-                <td>${post.postNum}</td>
+                <td>${status.count}</td>
                 <td><a href="/detail/${post.postNum}">${post.title}</a></td>
                 <td>${post.name}</td>
                 <td>${post.createDate}</td>

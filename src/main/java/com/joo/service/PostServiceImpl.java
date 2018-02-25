@@ -4,7 +4,6 @@ import com.joo.model.Post;
 import com.joo.repository.BbsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -27,5 +26,16 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post showPost(int postNum) {
         return bbsMapper.selectPost(postNum);
+    }
+
+    @Override
+    public Post updatePost(int postNum, Post post) {
+        bbsMapper.updatePost(postNum, post);
+        return bbsMapper.selectPost(postNum);
+    }
+
+    @Override
+    public void deletePost(int postNum) {
+        bbsMapper.deletePost(postNum);
     }
 }

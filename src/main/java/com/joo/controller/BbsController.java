@@ -42,4 +42,24 @@ public class BbsController {
         model.addAttribute("post", post);
         return "detail";
     }
+
+    @RequestMapping(value = "/update/{postNum}", method = RequestMethod.GET)
+    public String getUpdatePage(@PathVariable int postNum, Model model) {
+        Post post = postService.showPost(postNum);
+        model.addAttribute("post", post);
+        return "update";
+    }
+
+    @RequestMapping(value = "/update/{postNum}", method = RequestMethod.POST)
+    public String updatePost(@PathVariable int postNum, Model model, Post post) {
+        Post updatedPost = postService.updatePost(postNum, post);
+        model.addAttribute("post", updatedPost);
+        return "detail";
+    }
+
+    @RequestMapping(value = "/delete/{postNum}", method = RequestMethod.GET)
+    public String deletePost(@PathVariable int postNum) {
+        postService.deletePost(postNum);
+        return "redirect:/bbs";
+    }
 }

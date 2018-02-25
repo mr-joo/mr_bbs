@@ -20,7 +20,17 @@
               , main_text AS mainText
               , name AS name
               , create_date AS createDate
+              , post_num AS postNum
           FROM post
           WHERE post_num = #{postNum}
     </select>
+
+    <update id="updatePost" parameterType="com.joo.model.Post">
+        UPDATE post SET title = #{post.title}, main_text=#{post.mainText}
+        WHERE post_num = #{postNum}
+    </update>
+
+    <delete id="deletePost" parameterType="int">
+        DELETE FROM post WHERE post_num = #{postNum}
+    </delete>
 </mapper>

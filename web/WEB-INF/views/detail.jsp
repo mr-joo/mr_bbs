@@ -14,12 +14,14 @@
             <th>
                 <div class="tb-title" style="text-align: center">Title</div>
             </th>
-            <th>
-                ${post.title}
-            </th>
         </tr>
         </thead>
         <tbody>
+        <tr style="text-align: center">
+            <td>
+                ${post.title}
+            </td>
+        </tr>
         <tr>
             <td>
                 <div style="text-align: right">Date : ${post.createDate}</div>
@@ -34,11 +36,17 @@
         </tbody>
     </table>
 
-    <button type="button" class="btn pull-left">수정</button>
-    <button type="button" class="btn pull-left">삭제</button>
+    <form action="/update/${post.postNum}" method="get">
+        <input type="submit" class="btn pull-left" value="수정">
+    </form>
 
-    <button type="button" class="btn pull-right">목록</button>
-    <input type="submit" class="btn pull-right" value="저장">
+    <form action="/delete/${post.postNum}" method="get">
+        <input type="submit" class="btn pull-left" value="삭제"></input>
+    </form>
+
+    <form action="/bbs" method="get">
+        <input type="submit" class="btn pull-right" value="목록"></input>
+    </form>
 </div>
 
 <div class="container">
