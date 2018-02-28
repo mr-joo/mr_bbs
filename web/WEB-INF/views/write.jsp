@@ -1,17 +1,14 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: USER
-  Date: 2018-02-20
-  Time: 오전 10:37
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>WRITE</title>
     <link href="<c:url value="/resources/css/bootstrap.css"/>" rel="stylesheet">
+    <script src="/resources/javascript/jquery-3.3.1.js"></script>
+    <script src="/resources/javascript/custom.js"></script>
 </head>
 <body>
 <div class="container">
@@ -35,7 +32,7 @@
                       style="width: 300px"></input>
         </div>
 
-        <input type="submit" class="btn pull-right" value="저장">
+        <input type="submit" class="btn pull-right" id="submit" value="저장">
     </form>
 
     <form action="bbs" method="get">

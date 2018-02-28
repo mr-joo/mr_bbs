@@ -5,12 +5,12 @@
     <select id="selectList" resultType="com.joo.model.Post">
         SELECT post_num AS postNum
               , title AS title
-              , create_date AS createDate
+              , date_format(create_date, '%Y-%m-%d %H:%i:%S') AS createDate
               , name AS name
           FROM post
     </select>
 
-    <insert id="insert" parameterType="com.joo.model.Post">
+    <insert id="insertPost" parameterType="com.joo.model.Post">
         INSERT INTO post(title, main_text, name, create_date)
         VALUES (#{title}, #{mainText}, #{name}, sysdate())
     </insert>
@@ -19,7 +19,7 @@
         SELECT title AS title
               , main_text AS mainText
               , name AS name
-              , create_date AS createDate
+              , date_format(create_date, '%Y-%m-%d %H:%i:%S') AS createDate
               , post_num AS postNum
           FROM post
           WHERE post_num = #{postNum}
@@ -33,4 +33,20 @@
     <delete id="deletePost" parameterType="int">
         DELETE FROM post WHERE post_num = #{postNum}
     </delete>
+
+    <insert id="insertComment" parameterType="com.joo.model.Comment">
+        INSERT INTO reply(post_num, reply_num, reply_text)
+        VALUES (#{postNum}, #{commentNum}, #{commentText})
+    </insert>
+
+    <select id="selectCommentList" resultType="com.joo.model.Comment">
+        SELECT reply_text AS commentText
+        FROM reply
+        WHERE post_num = #{postNum}
+    </select>
+
+    <update id="updateComment" parameterType="com.joo.model.Comment">
+        UPDATE reply SET reply_text = #{commentText}
+        WHERE reply_num = #{commentNum}
+    </update>
 </mapper>

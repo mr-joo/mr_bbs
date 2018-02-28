@@ -1,6 +1,7 @@
 package com.joo.controller;
 
 
+import com.joo.model.Comment;
 import com.joo.model.Post;
 import com.joo.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -32,15 +32,45 @@ public class BbsController {
 
     @RequestMapping(value = "write", method = RequestMethod.POST)
     public String write(Post post) {
-        postService.write(post);
+        if (post.getTitle().length() == 0) {
+            throw new RuntimeException();
+        } else if (post.getTitle().length() > 20) {
+            throw new RuntimeException();
+        } else if (post.getMainText().length() == 0) {
+            throw new RuntimeException();
+        } else if (post.getMainText().length() > 200) {
+            throw new RuntimeException();
+        } else if (post.getName().length() == 0) {
+            throw  new RuntimeException();
+        } else if (post.getName().length() > 20) {
+            throw new RuntimeException();
+        }
+
+        postService.writePost(post);
+
         return "redirect:/bbs";
     }
 
-    @RequestMapping("/detail/{postNum}")
+    @RequestMapping(value = "/detail/{postNum}", method = RequestMethod.GET)
     public String showDetailPage(@PathVariable int postNum, Model model) {
         Post post = postService.showPost(postNum);
         model.addAttribute("post", post);
+
+        List<Comment> commentList = postService.getCommentList(postNum);
+        model.addAttribute("commentList", commentList);
         return "detail";
+    }
+
+    @RequestMapping(value = "insertComment", method = RequestMethod.POST)
+    public String insertReply(Comment comment) {
+        postService.insertComment(comment);
+        return "redirect:/detail/" + comment.getPostNum();
+    }
+
+    @RequestMapping(value = "updateComment", method = RequestMethod.POST)
+    public String updateComment(Comment comment) {
+        postService.updateComment(comment);
+        return "redirect:/detail/" + comment.getPostNum();
     }
 
     @RequestMapping(value = "/update/{postNum}", method = RequestMethod.GET)

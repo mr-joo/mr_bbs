@@ -7,7 +7,7 @@ public class Post {
     private String mainText;
     private int postNum;
     private String name;
-    private Date createDate;
+    private String createDate;
 
     public String getTitle() {
         return title;
@@ -33,11 +33,11 @@ public class Post {
         this.postNum = postNum;
     }
 
-    public Date getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 
