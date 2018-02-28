@@ -17,4 +17,5 @@ public interface BbsMapper {
     void insertComment(Comment comment);
     List<Comment> selectCommentList(int postNum);
     void updateComment(Comment comment);
+    void deleteComment(Comment comment);
 }

@@ -48,5 +48,10 @@
     <update id="updateComment" parameterType="com.joo.model.Comment">
         UPDATE reply SET reply_text = #{commentText}
         WHERE reply_num = #{commentNum}
+        AND post_num = #{postNum}
     </update>
+
+    <delete id="deleteComment" parameterType="com.joo.model.Comment">
+        DELETE FROM reply WHERE reply_num = #{commentNum} AND post_num = #{postNum}
+    </delete>
 </mapper>

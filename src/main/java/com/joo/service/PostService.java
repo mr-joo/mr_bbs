@@ -14,4 +14,5 @@ public interface PostService {
     void insertComment(Comment comment);
     List<Comment> getCommentList(int postNum);
     void updateComment(Comment comment);
+    void deleteComment(Comment comment);
 }

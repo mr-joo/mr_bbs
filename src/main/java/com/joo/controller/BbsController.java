@@ -92,4 +92,10 @@ public class BbsController {
         postService.deletePost(postNum);
         return "redirect:/bbs";
     }
+
+    @RequestMapping(value = "deleteComment", method = RequestMethod.GET)
+    public String deleteComment(Comment comment) {
+        postService.deleteComment(comment);
+        return "redirect:/detail/" + comment.getPostNum();
+    }
 }

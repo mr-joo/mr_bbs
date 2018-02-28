@@ -54,4 +54,9 @@ public class PostServiceImpl implements PostService {
     public void updateComment(Comment comment) {
         bbsMapper.updateComment(comment);
     }
+
+    @Override
+    public void deleteComment(Comment comment) {
+        bbsMapper.deleteComment(comment);
+    }
 }
