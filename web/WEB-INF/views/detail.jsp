@@ -83,7 +83,7 @@
                     <textarea name="updateCommentText" class="form-control" rows="3"
                               style="width: 1100px; display:none;"></textarea>
 
-                    <input type="hidden" name="postNum" value="${post.postNum}">
+                    <input type="hidden" name="commentNum" value="${comment.commentNum}">
 
                     <input type="button" name="deleteComment" class="btn pull-right" value="삭제">
                     <input type="button" name="updateComment" class="btn pull-right" value="수정">

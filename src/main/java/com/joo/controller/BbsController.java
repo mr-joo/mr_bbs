@@ -7,9 +7,7 @@ import com.joo.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -67,10 +65,11 @@ public class BbsController {
         return "redirect:/detail/" + comment.getPostNum();
     }
 
-    @RequestMapping(value = "updateComment", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateComment", method = RequestMethod.POST)
+    @ResponseBody
     public String updateComment(Comment comment) {
-        postService.updateComment(comment);
-        return "redirect:/detail/" + comment.getPostNum();
+        String updatedCommentText = postService.updateComment(comment);
+        return updatedCommentText;
     }
 
     @RequestMapping(value = "/update/{postNum}", method = RequestMethod.GET)

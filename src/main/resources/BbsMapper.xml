@@ -41,6 +41,7 @@
 
     <select id="selectCommentList" resultType="com.joo.model.Comment">
         SELECT reply_text AS commentText
+              , reply_num AS commentNum
         FROM reply
         WHERE post_num = #{postNum}
     </select>
@@ -48,8 +49,13 @@
     <update id="updateComment" parameterType="com.joo.model.Comment">
         UPDATE reply SET reply_text = #{commentText}
         WHERE reply_num = #{commentNum}
-        AND post_num = #{postNum}
     </update>
+
+    <select id="selectComment" resultType="String" parameterType="com.joo.model.Comment">
+        SELECT reply_text
+        FROM reply
+        WHERE reply_num = #{commentNum}
+    </select>
 
     <delete id="deleteComment" parameterType="com.joo.model.Comment">
         DELETE FROM reply WHERE reply_num = #{commentNum} AND post_num = #{postNum}

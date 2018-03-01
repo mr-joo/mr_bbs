@@ -13,6 +13,6 @@ public interface PostService {
     void deletePost(int postNum);
     void insertComment(Comment comment);
     List<Comment> getCommentList(int postNum);
-    void updateComment(Comment comment);
+    String updateComment(Comment comment);
     void deleteComment(Comment comment);
 }

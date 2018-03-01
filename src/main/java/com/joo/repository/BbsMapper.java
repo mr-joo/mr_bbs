@@ -18,4 +18,5 @@ public interface BbsMapper {
     List<Comment> selectCommentList(int postNum);
     void updateComment(Comment comment);
     void deleteComment(Comment comment);
+    String selectComment(Comment comment);
 }

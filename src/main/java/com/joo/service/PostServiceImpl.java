@@ -51,8 +51,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void updateComment(Comment comment) {
+    public String updateComment(Comment comment) {
         bbsMapper.updateComment(comment);
+        return bbsMapper.selectComment(comment);
     }
 
     @Override
