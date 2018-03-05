@@ -30,20 +30,6 @@ public class BbsController {
 
     @RequestMapping(value = "write", method = RequestMethod.POST)
     public String write(Post post) {
-        if (post.getTitle().length() == 0) {
-            throw new RuntimeException();
-        } else if (post.getTitle().length() > 20) {
-            throw new RuntimeException();
-        } else if (post.getMainText().length() == 0) {
-            throw new RuntimeException();
-        } else if (post.getMainText().length() > 200) {
-            throw new RuntimeException();
-        } else if (post.getName().length() == 0) {
-            throw  new RuntimeException();
-        } else if (post.getName().length() > 20) {
-            throw new RuntimeException();
-        }
-
         postService.writePost(post);
 
         return "redirect:/bbs";
@@ -61,7 +47,7 @@ public class BbsController {
 
     @RequestMapping(value = "insertComment", method = RequestMethod.POST)
     public String insertReply(Comment comment) {
-        postService.insertComment(comment);
+        postService.createComment(comment);
         return "redirect:/detail/" + comment.getPostNum();
     }
 
@@ -73,28 +59,28 @@ public class BbsController {
     }
 
     @RequestMapping(value = "/update/{postNum}", method = RequestMethod.GET)
-    public String getUpdatePage(@PathVariable int postNum, Model model) {
+    public String getModifyPage(@PathVariable int postNum, Model model) {
         Post post = postService.showPost(postNum);
         model.addAttribute("post", post);
         return "update";
     }
 
     @RequestMapping(value = "/update/{postNum}", method = RequestMethod.POST)
-    public String updatePost(@PathVariable int postNum, Model model, Post post) {
-        Post updatedPost = postService.updatePost(postNum, post);
+    public String modifyPost(@PathVariable int postNum, Model model, Post post) {
+        Post updatedPost = postService.ModifyPost(postNum, post);
         model.addAttribute("post", updatedPost);
         return "detail";
     }
 
     @RequestMapping(value = "/delete/{postNum}", method = RequestMethod.GET)
-    public String deletePost(@PathVariable int postNum) {
-        postService.deletePost(postNum);
+    public String removePost(@PathVariable int postNum) {
+        postService.removePost(postNum);
         return "redirect:/bbs";
     }
 
-    @RequestMapping(value = "deleteComment", method = RequestMethod.GET)
-    public String deleteComment(Comment comment) {
-        postService.deleteComment(comment);
-        return "redirect:/detail/" + comment.getPostNum();
+    @RequestMapping(value = "/deleteComment", method = RequestMethod.GET)
+    @ResponseBody
+    public void deleteComment(Comment comment) {
+        postService.removeComment(comment);
     }
 }

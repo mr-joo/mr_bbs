@@ -1,7 +1,5 @@
 package com.joo.model;
 
-import java.util.Date;
-
 public class Post {
     private String title;
     private String mainText;
@@ -48,4 +46,16 @@ public class Post {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "title='" + title + '\'' +
+                ", mainText='" + mainText + '\'' +
+                ", postNum=" + postNum +
+                ", name='" + name + '\'' +
+                ", createDate='" + createDate + '\'' +
+                '}';
+    }
 }
+

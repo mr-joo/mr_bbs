@@ -15,7 +15,7 @@
         VALUES (#{title}, #{mainText}, #{name}, sysdate())
     </insert>
 
-    <select id="selectPost" resultType="com.joo.model.Post">
+    <select id="selectPost" resultType="com.joo.model.Post" parameterType="com.joo.model.Post">
         SELECT title AS title
               , main_text AS mainText
               , name AS name
@@ -58,6 +58,6 @@
     </select>
 
     <delete id="deleteComment" parameterType="com.joo.model.Comment">
-        DELETE FROM reply WHERE reply_num = #{commentNum} AND post_num = #{postNum}
+        DELETE FROM reply WHERE reply_num = #{commentNum}
     </delete>
 </mapper>

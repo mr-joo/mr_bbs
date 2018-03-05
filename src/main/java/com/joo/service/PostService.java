@@ -9,10 +9,10 @@ public interface PostService {
     List<Post> getPostList();
     void writePost(Post post);
     Post showPost(int postNum);
-    Post updatePost(int postNum, Post post);
-    void deletePost(int postNum);
-    void insertComment(Comment comment);
+    Post ModifyPost(int postNum, Post post);
+    void removePost(int postNum);
+    void createComment(Comment comment);
     List<Comment> getCommentList(int postNum);
     String updateComment(Comment comment);
-    void deleteComment(Comment comment);
+    void removeComment(Comment comment);
 }
