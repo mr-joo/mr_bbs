@@ -1,7 +1,7 @@
-package com.joo.service;
+package com.joo.bbs.service;
 
-import com.joo.model.Comment;
-import com.joo.model.Post;
+import com.joo.bbs.model.Comment;
+import com.joo.bbs.model.Post;
 
 import java.util.List;
 
@@ -9,10 +9,10 @@ public interface PostService {
     List<Post> getPostList();
     void writePost(Post post);
     Post showPost(int postNum);
-    Post ModifyPost(int postNum, Post post);
+    void modifyPost(Post post);
     void removePost(int postNum);
     void createComment(Comment comment);
     List<Comment> getCommentList(int postNum);
-    String updateComment(Comment comment);
+    void updateComment(Comment comment);
     void removeComment(Comment comment);
 }

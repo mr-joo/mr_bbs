@@ -1,8 +1,7 @@
-package com.joo.repository;
+package com.joo.bbs.repository;
 
-import com.joo.model.Comment;
-import com.joo.model.Post;
-import org.apache.ibatis.annotations.Param;
+import com.joo.bbs.model.Comment;
+import com.joo.bbs.model.Post;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,7 +11,7 @@ public interface BbsMapper {
     List<Post> selectList();
     void insertPost(Post post);
     Post selectPost(int postNum);
-    void updatePost(@Param("postNum") int postNum, @Param("post") Post post);
+    void updatePost(Post post);
     void deletePost(int postNum);
     void insertComment(Comment comment);
     List<Comment> selectCommentList(int postNum);

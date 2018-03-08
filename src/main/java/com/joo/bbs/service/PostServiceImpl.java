@@ -1,16 +1,21 @@
-package com.joo.service;
+package com.joo.bbs.service;
 
-import com.joo.model.Comment;
-import com.joo.model.Post;
-import com.joo.repository.BbsMapper;
+import com.joo.bbs.repository.BbsMapper;
+import com.joo.bbs.model.Comment;
+import com.joo.bbs.model.Post;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
 @Service
 public class PostServiceImpl implements PostService {
+    private static final int MAX_LENGTH_TITLE = 20;
+    private static final int MAX_LENGTH_MAIN_TEXT = 200;
+    private static final int MAX_LENGTH_NAME = 20;
+
     @Autowired
     private BbsMapper bbsMapper;
 
@@ -22,29 +27,31 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void writePost(Post post) {
-        if (someMandatoryParameterEmpty(post)) {
-            throw new IllegalArgumentException("Post is Invalid. post: [" + post + "]");
-        } else if (someMandatoryParameterLengthOver(post)) {
-            throw new IllegalArgumentException("Post is Invalid. post: [" + post + "]");
+        if (isAnyEmptySomeMandatory(post)) {
+            throw new IllegalArgumentException("SomeMandatoryParameter is empty. post: [" + post + "]");
+        }
+
+        if (containsOverLengthParam(post)) {
+            throw new IllegalArgumentException("SomeMandatoryParameter is LengthOver. post: [" + post + "]");
         }
 
         bbsMapper.insertPost(post);
     }
 
-    private boolean someMandatoryParameterEmpty(Post post) {
-        return StringUtils.isAnyEmpty(post.getTitle(), post.getMainText(), post.getName());
+    private boolean isAnyEmptySomeMandatory(Post post) {
+        return ObjectUtils.isEmpty(post) || StringUtils.isAnyEmpty(post.getTitle(), post.getMainText(), post.getName());
     }
 
-    private boolean someMandatoryParameterLengthOver(Post post) {
-        if (post.getTitle().length() > 20) {
+    private boolean containsOverLengthParam(Post post) {
+        if (StringUtils.length(post.getTitle()) > MAX_LENGTH_TITLE) {
             return true;
         }
 
-        if (post.getMainText().length() > 200) {
+        if (StringUtils.length(post.getMainText())> MAX_LENGTH_MAIN_TEXT) {
             return true;
         }
 
-        if (post.getName().length() > 20) {
+        if (StringUtils.length(post.getName())> MAX_LENGTH_NAME) {
             return true;
         }
 
@@ -57,9 +64,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post ModifyPost(int postNum, Post post) {
-        bbsMapper.updatePost(postNum, post);
-        return bbsMapper.selectPost(postNum);
+    public void modifyPost(Post post) {
+        bbsMapper.updatePost(post);
     }
 
     @Override
@@ -78,9 +84,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public String updateComment(Comment comment) {
+    public void updateComment(Comment comment) {
         bbsMapper.updateComment(comment);
-        return bbsMapper.selectComment(comment);
     }
 
     @Override

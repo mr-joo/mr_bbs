@@ -9,11 +9,11 @@
 <body>
 <div class="container">
     <h3 style="color: #5e5e5e">글 수정</h3>
-    <form action="/update/${post.postNum}" method="post">
+    <form action="/updatePost" method="post">
         <div class="form-group">
             <label for="title">제목</label>
             <input name="title" type="text" class="form-control" id="title"
-                        style="width: 1000px" value="${post.title}"></input>
+                        style="width: 1000px" value="${post.title}">
         </div>
 
         <div class="form-group">
@@ -22,12 +22,14 @@
                            style="width: 1000px">${post.mainText}</textarea>
         </div>
 
+        <input type="hidden" name="postNum" value="${post.postNum}">
+
         <input type="submit" class="btn pull-right" value="저장">
     </form>
 
-    <form action="/bbs" method="get">
-        <input type="submit" class="btn pull-right" value="목록"></input>
-    </form>
+    <a href="/bbs">
+        <input type="button" class="btn pull-right" value="목록">
+    </a>
 </div>
 </body>
 </html>

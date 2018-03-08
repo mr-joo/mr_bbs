@@ -1,4 +1,4 @@
-package com.joo.model;
+package com.joo.bbs.model;
 
 public class Post {
     private String title;
