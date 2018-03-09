@@ -37,7 +37,7 @@
         </tbody>
     </table>
 
-    <a href="/write">
+    <a href="createPost">
         <input type="button" class="btn pull-right" value="글쓰기">
     </a>
 </div>

@@ -36,6 +36,11 @@
                 <div>${post.mainText}</div>
             </td>
         </tr>
+        <tr>
+            <td>
+                <img src="" class="img-thumbnail">
+            </td>
+        </tr>
         </tbody>
     </table>
 

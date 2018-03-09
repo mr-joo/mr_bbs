@@ -26,7 +26,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void writePost(Post post) {
+    public void createPost(Post post) {
         if (isAnyEmptySomeMandatory(post)) {
             throw new IllegalArgumentException("SomeMandatoryParameter is empty. post: [" + post + "]");
         }
@@ -59,7 +59,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post showPost(int postNum) {
+    public Post getPost(int postNum) {
         return bbsMapper.selectPost(postNum);
     }
 

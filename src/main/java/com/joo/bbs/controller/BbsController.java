@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
 public class BbsController {
-    private static final Logger logger = LoggerFactory.getLogger(BbsController.class);
 
     @Autowired
     private PostService postService;
@@ -28,31 +30,35 @@ public class BbsController {
         return "main";
     }
 
-    @RequestMapping(value = "write", method = RequestMethod.GET)
+    @RequestMapping(value = "createPost", method = RequestMethod.GET)
     public String getWritePage() {
         return "write";
     }
 
-    @RequestMapping(value = "write", method = RequestMethod.POST)
-    public String write(Post post) {
-        postService.writePost(post);
+    @RequestMapping(value = "createPost", method = RequestMethod.POST)
+    public String createPost(Post post, @RequestParam("uploadFile") MultipartFile uploadFile) throws IOException {
+        if (!uploadFile.isEmpty()) {
+
+            String fileName = uploadFile.getOriginalFilename();
+            uploadFile.transferTo(new File("C:\\Users\\NTS\\Pictures\\uploadFile\\" + fileName));
+        }
+
+        postService.createPost(post);
 
         return "redirect:/bbs";
     }
 
     @RequestMapping(value = "/detail/{postNum}", method = RequestMethod.GET)
-    public String showDetailPage(@PathVariable int postNum, Model model) {
-        Post post = postService.showPost(postNum);
-        model.addAttribute("post", post);
-        List<Comment> commentList = postService.getCommentList(postNum);
-        model.addAttribute("commentList", commentList);
+    public String getDetailPage(@PathVariable int postNum, Model model) {
+        model.addAttribute("post", postService.getPost(postNum));
+        model.addAttribute("commentList", postService.getCommentList(postNum));
 
         return "detail";
     }
 
     @RequestMapping(value = "/update/{postNum}", method = RequestMethod.GET)
     public String getModifyPage(@PathVariable int postNum, Model model) {
-        Post post = postService.showPost(postNum);
+        Post post = postService.getPost(postNum);
         model.addAttribute("post", post);
 
         return "update";
@@ -66,7 +72,7 @@ public class BbsController {
     }
 
     @RequestMapping(value = "insertComment", method = RequestMethod.POST)
-    public String insertReply(Comment comment) {
+    public String createComment(Comment comment) {
         postService.createComment(comment);
 
         return "redirect:/detail/" + comment.getPostNum();

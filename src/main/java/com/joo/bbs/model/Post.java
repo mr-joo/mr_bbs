@@ -1,5 +1,7 @@
 package com.joo.bbs.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Post {
     private String title;
     private String mainText;

@@ -13,7 +13,7 @@
 <body>
 <div class="container">
     <h3 style="color: #5e5e5e">글쓰기</h3>
-    <form action="/write" method="post">
+    <form action="createPost" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title">제목</label>
             <input name="title" type="text" class="form-control" id="title"
@@ -24,6 +24,11 @@
             <label for="mainText">내용</label>
             <textarea name="mainText" class="form-control" id="mainText" rows="3"
                            style="width: 1000px"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="uploadFile">첨부 파일</label>
+            <input type="file" name="uploadFile" id="uploadFile">
         </div>
 
         <div class="form-group">
