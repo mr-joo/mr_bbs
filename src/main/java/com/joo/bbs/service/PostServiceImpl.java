@@ -26,7 +26,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void createPost(Post post) {
+    public boolean createPost(Post post) {
         if (isAnyEmptySomeMandatory(post)) {
             throw new IllegalArgumentException("SomeMandatoryParameter is empty. post: [" + post + "]");
         }
@@ -35,7 +35,7 @@ public class PostServiceImpl implements PostService {
             throw new IllegalArgumentException("SomeMandatoryParameter is LengthOver. post: [" + post + "]");
         }
 
-        bbsMapper.insertPost(post);
+        return bbsMapper.insertPost(post) == 1;
     }
 
     private boolean isAnyEmptySomeMandatory(Post post) {
@@ -47,11 +47,11 @@ public class PostServiceImpl implements PostService {
             return true;
         }
 
-        if (StringUtils.length(post.getMainText())> MAX_LENGTH_MAIN_TEXT) {
+        if (StringUtils.length(post.getMainText()) > MAX_LENGTH_MAIN_TEXT) {
             return true;
         }
 
-        if (StringUtils.length(post.getName())> MAX_LENGTH_NAME) {
+        if (StringUtils.length(post.getName()) > MAX_LENGTH_NAME) {
             return true;
         }
 

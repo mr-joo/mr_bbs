@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface BbsMapper {
     List<Post> selectList();
-    void insertPost(Post post);
+    int insertPost(Post post);
     Post selectPost(int postNum);
     void updatePost(Post post);
     void deletePost(int postNum);

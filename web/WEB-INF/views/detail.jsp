@@ -6,7 +6,7 @@
     <title>CONTENT DETAIL</title>
     <link href="<sc:url value="/resources/css/bootstrap.css"/>" rel="stylesheet">
     <script src="/resources/javascript/jquery-3.3.1.js"></script>
-    <script src="/resources/javascript/custom.js"></script>
+    <script src="/resources/javascript/comment.js"></script>
 </head>
 <body>
 <div class="container">

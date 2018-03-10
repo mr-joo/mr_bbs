@@ -4,6 +4,7 @@ package com.joo.bbs.controller;
 import com.joo.bbs.model.Comment;
 import com.joo.bbs.model.Post;
 import com.joo.bbs.service.PostService;
+import org.apache.commons.lang3.BooleanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import java.util.List;
 
 @Controller
 public class BbsController {
+
+    private static final Logger logger = (Logger) LoggerFactory.getLogger(BbsController.class);
 
     @Autowired
     private PostService postService;
@@ -36,16 +39,17 @@ public class BbsController {
     }
 
     @RequestMapping(value = "createPost", method = RequestMethod.POST)
-    public String createPost(Post post, @RequestParam("uploadFile") MultipartFile uploadFile) throws IOException {
-        if (!uploadFile.isEmpty()) {
+    @ResponseBody
+    public String createPost(Post post
+            //, @RequestParam("uploadFile") MultipartFile uploadFile
+                              ) throws IOException {
+//        if (!uploadFile.isEmpty()) {
+//
+//            String fileName = uploadFile.getOriginalFilename();
+//            uploadFile.transferTo(new File("C:\\Users\\NTS\\Pictures\\uploadFile\\" + fileName));
+//        }
 
-            String fileName = uploadFile.getOriginalFilename();
-            uploadFile.transferTo(new File("C:\\Users\\NTS\\Pictures\\uploadFile\\" + fileName));
-        }
-
-        postService.createPost(post);
-
-        return "redirect:/bbs";
+        return BooleanUtils.toStringTrueFalse(postService.createPost(post));
     }
 
     @RequestMapping(value = "/detail/{postNum}", method = RequestMethod.GET)
@@ -65,7 +69,13 @@ public class BbsController {
     }
 
     @RequestMapping(value = "/updatePost", method = RequestMethod.POST)
-    public String modifyPost(Post post) {
+    public String modifyPost(Post post, @RequestParam("uploadFile") MultipartFile uploadFile) throws IOException {
+        if (!uploadFile.isEmpty()) {
+            logger.info("fileName : " + uploadFile.getName());
+            String fileName = uploadFile.getOriginalFilename();
+            uploadFile.transferTo(new File("C:\\Users\\NTS\\Pictures\\uploadFile\\" + fileName));
+        }
+
         postService.modifyPost(post);
 
         return "redirect:/detail/" + post.getPostNum();

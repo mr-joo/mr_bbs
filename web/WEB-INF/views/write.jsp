@@ -8,12 +8,12 @@
     <title>WRITE</title>
     <link href="<c:url value="/resources/css/bootstrap.css"/>" rel="stylesheet">
     <script src="/resources/javascript/jquery-3.3.1.js"></script>
-    <script src="/resources/javascript/custom.js"></script>
+    <script src="/resources/javascript/post.js"></script>
 </head>
 <body>
 <div class="container">
     <h3 style="color: #5e5e5e">글쓰기</h3>
-    <form action="createPost" method="post" enctype="multipart/form-data">
+    <form action="createPost" method="post" enctype="multipart/form-data" name="postForm" id="postForm">
         <div class="form-group">
             <label for="title">제목</label>
             <input name="title" type="text" class="form-control" id="title"
@@ -37,7 +37,7 @@
                       style="width: 300px"></input>
         </div>
 
-        <input type="submit" class="btn pull-right" id="submit" value="저장">
+        <input type="submit" class="btn pull-right" name="submit" value="저장">
     </form>
 
     <form action="bbs" method="get">

@@ -22,6 +22,12 @@
                            style="width: 1000px">${post.mainText}</textarea>
         </div>
 
+        <div class="form-group">
+            <img src="" class="img-thumbnail">
+            <label for="uploadFile">첨부 파일</label>
+            <input type="file" name="uploadFile" id="uploadFile">
+        </div>
+
         <input type="hidden" name="postNum" value="${post.postNum}">
 
         <input type="submit" class="btn pull-right" value="저장">
