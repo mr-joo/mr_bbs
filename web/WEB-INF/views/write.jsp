@@ -29,6 +29,7 @@
         <div class="form-group">
             <label for="uploadFile">첨부 파일</label>
             <input type="file" name="uploadFile" id="uploadFile">
+            <input type="button" name="saveFile" id="saveFile" value="저장">
         </div>
 
         <div class="form-group">

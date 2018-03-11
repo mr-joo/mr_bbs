@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class BbsController {
@@ -40,16 +41,19 @@ public class BbsController {
 
     @RequestMapping(value = "createPost", method = RequestMethod.POST)
     @ResponseBody
-    public String createPost(Post post
-            //, @RequestParam("uploadFile") MultipartFile uploadFile
-                              ) throws IOException {
-//        if (!uploadFile.isEmpty()) {
-//
-//            String fileName = uploadFile.getOriginalFilename();
-//            uploadFile.transferTo(new File("C:\\Users\\NTS\\Pictures\\uploadFile\\" + fileName));
-//        }
-
+    public String createPost(Post post) {
         return BooleanUtils.toStringTrueFalse(postService.createPost(post));
+    }
+
+    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+    @ResponseBody
+    public String uploadFile (@RequestParam("uploadFile") MultipartFile uploadFile, int postNum) throws IOException {
+        if (!uploadFile.isEmpty()) {
+            String fileName = uploadFile.getOriginalFilename();
+            uploadFile.transferTo(new File("C:/Users/NTS/Pictures/uploadFile/" + postNum + "/" + fileName));
+        }
+
+        return "fileNum";
     }
 
     @RequestMapping(value = "/detail/{postNum}", method = RequestMethod.GET)

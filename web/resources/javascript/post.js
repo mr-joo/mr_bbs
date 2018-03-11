@@ -46,6 +46,29 @@ $(document).ready(function () {
         return true;
     }
 
+    $("#saveFile").on("click", function () {
+        var uploadFile = $("#uploadFile");
+
+        var file = uploadFile[0].files[0];
+
+        var formData = new FormData();
+
+        formData.append("uploadFile", file);
+
+        $.ajax({
+            url : "/uploadFile",
+            type : "POST",
+            data : formData,
+            processData : false,
+            contentType : false,
+            async : false,
+            success : function (fileId) {
+                alert("업로드 성공")
+                $("#fileID").val(fileId);
+            }
+        })
+    });
+
     $("#postForm").on("submit", function (event) {
 
         event.preventDefault();
@@ -57,7 +80,8 @@ $(document).ready(function () {
         var post = {
             title : $title.val(),
             mainText : $mainText.val(),
-            name : $name.val()
+            name : $name.val(),
+            fileId : $fileId.val()
         };
 
        $.ajax({
@@ -66,10 +90,7 @@ $(document).ready(function () {
            dataType : "text",
            data : post,
            success : function (result) {
-               console.log(result);
-               console.log(true);
-               console.log("true");
-               if (result == "true") {
+               if (result === "true") {
                    alert("저장 되었습니다.");
                    location.href = "/bbs";
                } else {
